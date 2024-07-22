@@ -1,7 +1,7 @@
-// src/pages/Signup.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Signup.css'; // Import the CSS file
 
 const Signup = () => {
   const [email, setEmail] = useState('');
@@ -26,27 +26,36 @@ const Signup = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-        required
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-        required
-      />
-      <select value={role} onChange={(e) => setRole(e.target.value)}>
-        <option value="learner">Learner</option>
-        <option value="teacher">Teacher</option>
-      </select>
-      <button type="submit">Signup</button>
-    </form>
+    <div className="signup-container">
+      <form className="signup-form" onSubmit={handleSubmit}>
+        <h2>Sign Up</h2>
+        <div className="form-group">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+          />
+        </div>
+        <div className="form-group">
+          <select value={role} onChange={(e) => setRole(e.target.value)}>
+            <option value="learner">Learner</option>
+            <option value="teacher">Teacher</option>
+          </select>
+        </div>
+        <button type="submit" className="signup-btn">Signup</button>
+      </form>
+    </div>
   );
 };
 

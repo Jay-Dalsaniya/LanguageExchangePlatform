@@ -1,62 +1,150 @@
-/* src/components/Home.css */
+/* Home.css */
+
 .home {
-    padding: 2rem;
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  line-height: 1.6;
+}
+
+.hero {
+  background: linear-gradient(135deg, #009FFD 0%, #2A2A72 100%);
+  color: #fff;
+  padding: 4rem 2rem;
+  text-align: center;
+  border-bottom: 2px solid #fff;
+}
+
+.hero-content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #FF6F61;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #FF4C4C;
+}
+
+.stats {
+  padding: 2rem;
+  background: #f4f4f4;
+  text-align: center;
+}
+
+.stats h2 {
+  margin-bottom: 2rem;
+}
+
+.stat-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.stat {
+  flex: 1;
+  padding: 1rem;
+  max-width: 200px;
+}
+
+.stat h3 {
+  font-size: 2rem;
+  color: #009FFD;
+  margin-bottom: 0.5rem;
+}
+
+.stat p {
+  font-size: 1.1rem;
+}
+
+.featured-tutors {
+  padding: 2rem;
+  background: #fff;
+  text-align: center;
+}
+
+.featured-tutors h2 {
+  margin-bottom: 1.5rem;
+}
+
+.tutors {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.tutor {
+  text-align: center;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  margin: 0 auto;
+  border: 3px solid #FF6F61;
+}
+
+.featured-tutors p {
+  margin-top: 0.5rem;
+}
+
+.testimonials {
+  padding: 2rem;
+  background: #f4f4f4;
+  text-align: center;
+}
+
+.testimonials h2 {
+  margin-bottom: 1.5rem;
+}
+
+.testimonial {
+  margin: 1rem auto;
+  max-width: 600px;
+}
+
+.testimonial p {
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.testimonial span {
+  display: block;
+  font-weight: bold;
+  color: #009FFD;
+}
+
+@media (max-width: 600px) {
+  .stat-container {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  .hero {
-    background-color: #f5f5f5;
-    padding: 2rem;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  .hero-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .hero-content p {
-    font-size: 1.2rem;
-    color: #666;
-  }
-  
-  .stats {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 2rem;
-  }
-  
-  .stat {
-    text-align: center;
-  }
-  
-  .stat h2 {
-    font-size: 2rem;
-    color: #333;
-  }
-  
-  .stat p {
-    color: #666;
-  }
-  
-  .featured-tutors {
-    text-align: center;
-  }
-  
+
   .tutors {
-    display: flex;
-    justify-content: space-around;
+    flex-direction: column;
   }
-  
-  .tutor {
-    text-align: center;
-  }
-  
-  .tutor .avatar {
-    width: 100px;
-    height: 100px;
-    background-color: #ccc;
-    border-radius: 50%;
-    margin-bottom: 0.5rem;
-  }
-  
+}

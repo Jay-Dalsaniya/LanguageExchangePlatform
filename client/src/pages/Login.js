@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './Login.css'; // Import the CSS file
 
 const Login = ({ setIsAuthenticated, setUserRole }) => {
   const [email, setEmail] = useState('');
@@ -25,24 +26,30 @@ const Login = ({ setIsAuthenticated, setUserRole }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <button type="submit">Login</button>
-    </form>
+    <div className="login-container">
+      <form className="login-form" onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        <div className="form-group">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit" className="login-btn">Login</button>
+      </form>
+    </div>
   );
 };
 
