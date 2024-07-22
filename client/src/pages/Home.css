@@ -1,0 +1,62 @@
+/* src/components/Home.css */
+.home {
+    padding: 2rem;
+  }
+  
+  .hero {
+    background-color: #f5f5f5;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .hero-content p {
+    font-size: 1.2rem;
+    color: #666;
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat h2 {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .stat p {
+    color: #666;
+  }
+  
+  .featured-tutors {
+    text-align: center;
+  }
+  
+  .tutors {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .tutor {
+    text-align: center;
+  }
+  
+  .tutor .avatar {
+    width: 100px;
+    height: 100px;
+    background-color: #ccc;
+    border-radius: 50%;
+    margin-bottom: 0.5rem;
+  }
+  
