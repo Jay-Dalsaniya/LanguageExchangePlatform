@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
-import Home from './pages/Home';
+// App.js
+import React, { useEffect, useState } from 'react';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import './App.css';
+import NavBar from './components/NavBar';
 import About from './pages/About';
 import Contact from './pages/Contact';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
+import Home from './pages/Home';
 import LearnerDashboard from './pages/LearnerDashboard';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 import TeacherDashboard from './pages/TeacherDashboard';
-import NavBar from './components/NavBar';
-import './App.css';
+import ForgotPassword from './pages/ForgotPassword'; // Import the ForgotPassword component
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userRole, setUserRole] = useState(null);
 
   useEffect(() => {
-    // Check for authentication status from local storage or API
     const token = localStorage.getItem('authToken');
     const role = localStorage.getItem('userRole');
     if (token) {
@@ -25,7 +26,6 @@ const App = () => {
   }, []);
 
   const handleLogout = () => {
-    // Clear user authentication state
     localStorage.removeItem('authToken');
     localStorage.removeItem('userRole');
     setIsAuthenticated(false);
@@ -46,6 +46,7 @@ const App = () => {
             <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} setUserRole={setUserRole} />} />
             <Route path="/learner-dashboard" element={<LearnerDashboard />} />
             <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} /> {/* Add ForgotPassword route */}
           </Routes>
         </main>
         <footer className="footer">

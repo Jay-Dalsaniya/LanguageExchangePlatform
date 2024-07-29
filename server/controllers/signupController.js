@@ -13,6 +13,7 @@ exports.signup = async (req, res) => {
 
     // Create new user
     const newUser = new User({ email, password, role });
+    // User.append("access_key", "YOUR_ACCESS_KEY_HERE");
     await newUser.save();
 
     res.status(201).json({ message: 'User registered successfully' });

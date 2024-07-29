@@ -1,18 +1,19 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import './NavBar.css'; // Import the CSS file
 
 const NavBar = ({ isAuthenticated, handleLogout }) => {
   const navigate = useNavigate();
 
   return (
     <nav className="navbar">
-      <div className="brand">Language Exchange Platform</div>
+      <div className="brand" onClick={() => navigate('/')}>Language Exchange Platform</div>
       <ul className="nav-links">
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
         <li><Link to="/contact">Contact</Link></li>
         {isAuthenticated ? (
-          <li><button onClick={handleLogout}>Logout</button></li>
+          <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
         ) : (
           <>
             <li><Link to="/login">Login</Link></li>

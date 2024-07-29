@@ -26,29 +26,42 @@ const Login = ({ setIsAuthenticated, setUserRole }) => {
   };
 
   return (
-    <div className="login-container">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Login</h2>
-        <div className="form-group">
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="login-btn">Login</button>
-      </form>
+    <div className="login-page">
+      <div className="login-image">
+        <img src="assets\image.png" alt="Login illustration" />
+      </div>
+      <div className="login-container">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <h2>Login</h2>
+          <div className="form-group">
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input type="checkbox" id="rememberMe" />
+            <label htmlFor="rememberMe">Remember Me</label>
+            <a href="/forgot-password" className="forgot-password">Forgot Password?</a>
+          </div>
+          <button type="submit" className="login-btn">SIGN IN</button>
+          <p className="signup-link">
+            New on our platform? <a href="/signup">Create an account</a>
+          </p>
+        </form>
+      </div>
     </div>
   );
 };
