@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Login.css'; // Import the CSS file
+import { toast } from 'react-toastify'; // Import toast
+import './Login.css';
 
 const Login = ({ setIsAuthenticated, setUserRole }) => {
   const [email, setEmail] = useState('');
@@ -17,18 +18,18 @@ const Login = ({ setIsAuthenticated, setUserRole }) => {
       localStorage.setItem('userRole', role);
       setIsAuthenticated(true);
       setUserRole(role);
-      alert(`Welcome ${role}!`);
+      toast.success(`Welcome ${role}!`); // Use toast instead of alert
       navigate(role === 'teacher' ? '/teacher-dashboard' : '/learner-dashboard');
     } catch (err) {
       console.error('Login Error:', err.response ? err.response.data : err.message);
-      alert('Login failed. Please check your credentials and try again.');
+      toast.error('Login failed. Please check your credentials and try again.'); // Use toast instead of alert
     }
   };
 
   return (
     <div className="login-page">
       <div className="login-image">
-        <img src="assets\image.png" alt="Login illustration" />
+        <img src="assets/image.png" alt="Login illustration" />
       </div>
       <div className="login-container">
         <form className="login-form" onSubmit={handleSubmit}>

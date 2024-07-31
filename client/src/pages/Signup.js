@@ -1,12 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Signup.css'; // Import the CSS file
+import { toast } from 'react-toastify'; // Import toast
+import './Signup.css';
 
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('learner'); // Default to 'learner'
+  const [role, setRole] = useState('learner');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -15,20 +16,20 @@ const Signup = () => {
       const response = await axios.post('http://localhost:5000/api/signup', {
         email,
         password,
-        role
+        role,
       });
-      alert('You have registered successfully!');
-      navigate('/login'); // Redirect to login page
+      toast.success('You have registered successfully!'); // Use toast instead of alert
+      navigate('/login');
     } catch (err) {
       console.error('Signup Error:', err.response ? err.response.data : err.message);
-      alert('Registration failed. Please try again.');
+      toast.error('Registration failed. Please try again.'); // Use toast instead of alert
     }
   };
 
   return (
     <div className="signup-page">
       <div className="signup-image">
-        <img src="assets\6368592.jpg" alt="Signup illustration" />
+        <img src="assets/6368592.jpg" alt="Signup illustration" />
       </div>
       <div className="signup-form-container">
         <form className="signup-form" onSubmit={handleSubmit}>

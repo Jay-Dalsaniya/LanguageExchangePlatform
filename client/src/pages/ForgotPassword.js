@@ -1,65 +1,46 @@
-// pages/ForgotPassword.js
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Add this if you haven't already
 import './ForgotPassword.css';
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [token, setToken] = useState('');
-  const [isTokenSent, setIsTokenSent] = useState(false);
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleEmailSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/api/forgot-password', { email });
-      alert(response.data.message);
-      setToken(response.data.token); // Store the token for resetting the password
-      setIsTokenSent(true);
+      setMessage(response.data.message);
+      toast.success(response.data.message);
+      navigate(`/reset-password/${response.data.token}`);
     } catch (error) {
-      alert(error.response.data.message);
-    }
-  };
-
-  const handlePasswordReset = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.post(`http://localhost:5000/api/reset-password/${token}`, { newPassword });
-      alert('Password updated successfully! Please login.');
-      // Redirect to login page after successful password reset
-      window.location.href = '/login';
-    } catch (error) {
-      alert(error.response.data.message);
+      setMessage(error.response.data.message);
+      toast.error(error.response.data.message);
     }
   };
 
   return (
-    <div className="forgot-password-container">
-      {!isTokenSent ? (
-        <form onSubmit={handleEmailSubmit}>
-          <h2>Forgot Password</h2>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <button type="submit">Submit</button>
+    <div className="forgot-password-page">
+      <div className="forgot-password-form-container">
+        <h2>Forgot Password</h2>
+        <form className="forgot-password-form" onSubmit={handleEmailSubmit}>
+          <div className="form-group">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="submit-btn">Submit</button>
         </form>
-      ) : (
-        <form onSubmit={handlePasswordReset}>
-          <h2>Reset Password</h2>
-          <input
-            type="password"
-            placeholder="Enter new password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            required
-          />
-          <button type="submit">Change Password</button>
-        </form>
-      )}
+        {message && <p className="message">{message}</p>}
+      </div>
     </div>
   );
 };

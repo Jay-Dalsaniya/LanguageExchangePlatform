@@ -1,4 +1,3 @@
-// routes/forgotPassword.js
 const express = require('express');
 const router = express.Router();
 const { forgotPassword, resetPassword } = require('../controllers/forgotPasswordController');

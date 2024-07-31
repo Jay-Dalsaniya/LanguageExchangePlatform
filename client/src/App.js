@@ -11,6 +11,9 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import TeacherDashboard from './pages/TeacherDashboard';
 import ForgotPassword from './pages/ForgotPassword'; // Import the ForgotPassword component
+import ResetPassword from './pages/ResetPassword'; // Import the ResetPassword component
+import { ToastContainer } from 'react-toastify'; // Import ToastContainer
+import 'react-toastify/dist/ReactToastify.css'; // Import toast CSS
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -47,8 +50,10 @@ const App = () => {
             <Route path="/learner-dashboard" element={<LearnerDashboard />} />
             <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
             <Route path="/forgot-password" element={<ForgotPassword />} /> {/* Add ForgotPassword route */}
+            <Route path="/reset-password/:token" element={<ResetPassword />} /> {/* Add ResetPassword route */}
           </Routes>
         </main>
+        <ToastContainer /> {/* Add this line for toast notifications */}
         <footer className="footer">
           <p>&copy; 2024 Language Exchange Platform. All rights reserved.</p>
         </footer>
