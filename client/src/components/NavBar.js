@@ -1,6 +1,7 @@
+// src/components/NavBar.js
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './NavBar.css'; // Import the CSS file
+import './NavBar.css';
 
 const NavBar = ({ isAuthenticated, handleLogout }) => {
   const navigate = useNavigate();
@@ -13,7 +14,10 @@ const NavBar = ({ isAuthenticated, handleLogout }) => {
         <li><Link to="/about">About</Link></li>
         <li><Link to="/contact">Contact</Link></li>
         {isAuthenticated ? (
-          <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
+          <>
+            <li><Link to="/profile">Profile</Link></li> {/* Link to Profile */}
+            <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
+          </>
         ) : (
           <>
             <li><Link to="/login">Login</Link></li>

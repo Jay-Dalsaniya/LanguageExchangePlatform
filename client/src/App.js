@@ -1,4 +1,4 @@
-// App.js
+// src/App.js
 import React, { useEffect, useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
@@ -10,10 +10,11 @@ import LearnerDashboard from './pages/LearnerDashboard';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import TeacherDashboard from './pages/TeacherDashboard';
-import ForgotPassword from './pages/ForgotPassword'; // Import the ForgotPassword component
-import ResetPassword from './pages/ResetPassword'; // Import the ResetPassword component
-import { ToastContainer } from 'react-toastify'; // Import ToastContainer
-import 'react-toastify/dist/ReactToastify.css'; // Import toast CSS
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
+import Profile from './pages/Profile'; // Import the Profile component
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -31,9 +32,10 @@ const App = () => {
   const handleLogout = () => {
     localStorage.removeItem('authToken');
     localStorage.removeItem('userRole');
+    localStorage.removeItem('userDetails'); // Clear user details on logout
     setIsAuthenticated(false);
     setUserRole(null);
-    window.location.href = '/'; // Redirect to login page
+    window.location.href = '/'; // Redirect to home page
   };
 
   return (
@@ -49,11 +51,13 @@ const App = () => {
             <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} setUserRole={setUserRole} />} />
             <Route path="/learner-dashboard" element={<LearnerDashboard />} />
             <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} /> {/* Add ForgotPassword route */}
-            <Route path="/reset-password/:token" element={<ResetPassword />} /> {/* Add ResetPassword route */}
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
+            <Route path="/profile" element={<Profile />} /> {/* Profile route */}
+            
           </Routes>
         </main>
-        <ToastContainer /> {/* Add this line for toast notifications */}
+        <ToastContainer />
         <footer className="footer">
           <p>&copy; 2024 Language Exchange Platform. All rights reserved.</p>
         </footer>

@@ -14,12 +14,15 @@ const Signup = () => {
   const [mobileNumber, setMobileNumber] = useState('');
   const [role, setRole] = useState('learner');
   const [region, setRegion] = useState('');
+  const [loading, setLoading] = useState(false); // Loading state
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Start loading
+
     try {
-      await axios.post('http://localhost:5000/api/signup', {
+      const response = await axios.post('http://localhost:5000/api/signup', {
         firstName,
         lastName,
         email,
@@ -30,11 +33,27 @@ const Signup = () => {
         role,
         region,
       });
+
+      // Store user details in local storage after successful signup
+      const userDetails = {
+        firstName,
+        lastName,
+        email,
+        birthDate,
+        gender,
+        mobileNumber,
+        role,
+        region,
+      };
+      localStorage.setItem('userDetails', JSON.stringify(userDetails));
+
       toast.success('You have registered successfully!');
       navigate('/login');
     } catch (err) {
       console.error('Signup Error:', err.response ? err.response.data : err.message);
       toast.error('Registration failed. Please try again.');
+    } finally {
+      setLoading(false); // Stop loading
     }
   };
 
@@ -123,7 +142,9 @@ const Signup = () => {
               required
             />
           </div>
-          <button type="submit" className="signup-btn">Signup</button>
+          <button type="submit" className="signup-btn" disabled={loading}>
+            {loading ? 'Signing Up...' : 'Signup'}
+          </button>
           <p className="login-link">
             Already have an account? <a href="/login">Login</a>
           </p>

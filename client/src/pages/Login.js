@@ -1,3 +1,4 @@
+// Login.js
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -13,16 +14,17 @@ const Login = ({ setIsAuthenticated, setUserRole }) => {
     e.preventDefault();
     try {
       const response = await axios.post('http://localhost:5000/api/login', { email, password });
-      const { token, role } = response.data;
+      const { token, role, profile } = response.data;
       localStorage.setItem('authToken', token);
       localStorage.setItem('userRole', role);
+      localStorage.setItem('userProfile', JSON.stringify(profile)); // Save profile info
       setIsAuthenticated(true);
       setUserRole(role);
-      toast.success(`Welcome ${role}!`); // Use toast instead of alert
+      toast.success(`Welcome ${role}!`);
       navigate(role === 'teacher' ? '/teacher-dashboard' : '/learner-dashboard');
     } catch (err) {
       console.error('Login Error:', err.response ? err.response.data : err.message);
-      toast.error('Login failed. Please check your credentials and try again.'); // Use toast instead of alert
+      toast.error('Login failed. Please check your credentials and try again.');
     }
   };
 
