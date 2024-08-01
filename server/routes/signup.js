@@ -7,4 +7,3 @@ const { signup } = require('../controllers/signupController');
 router.post('/', signup);
 
 module.exports = router;
-

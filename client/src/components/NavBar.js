@@ -15,7 +15,7 @@ const NavBar = ({ isAuthenticated, handleLogout }) => {
         <li><Link to="/contact">Contact</Link></li>
         {isAuthenticated ? (
           <>
-            <li><Link to="/profile">Profile</Link></li> {/* Link to Profile */}
+            <li><Link to="/profile">Profile</Link></li>
             <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
           </>
         ) : (
