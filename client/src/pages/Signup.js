@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify'; // Import toast
+import { toast } from 'react-toastify';
 import './Signup.css';
 
 const Signup = () => {
@@ -18,11 +18,11 @@ const Signup = () => {
         password,
         role,
       });
-      toast.success('You have registered successfully!'); // Use toast instead of alert
+      toast.success('You have registered successfully!');
       navigate('/login');
     } catch (err) {
       console.error('Signup Error:', err.response ? err.response.data : err.message);
-      toast.error('Registration failed. Please try again.'); // Use toast instead of alert
+      toast.error('Registration failed. Please try again.');
     }
   };
 
