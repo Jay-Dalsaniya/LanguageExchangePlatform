@@ -24,6 +24,7 @@ exports.signup = async (req, res) => {
       region
     });
 
+    
     // Save user to the database
     await newUser.save();
 
