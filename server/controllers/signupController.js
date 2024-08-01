@@ -1,5 +1,6 @@
 // controllers/signupController.js
 const User = require('../models/User');
+const jwt = require('jsonwebtoken');
 
 exports.signup = async (req, res) => {
   try {
@@ -27,9 +28,15 @@ exports.signup = async (req, res) => {
     // Save user to the database
     await newUser.save();
 
-    res.status(201).json({ message: 'User registered successfully' });
+    // Generate JWT token
+    const token = jwt.sign({ userId: newUser._id, role: newUser.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    res.status(201).json({
+      message: 'User registered successfully',
+      token,
+      user: newUser.toObject({ getters: true, versionKey: false, transform: (doc, ret) => { delete ret.password; return ret; } })
+    });
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
   }
 };
-

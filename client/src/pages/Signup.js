@@ -14,12 +14,12 @@ const Signup = () => {
   const [mobileNumber, setMobileNumber] = useState('');
   const [role, setRole] = useState('learner');
   const [region, setRegion] = useState('');
-  const [loading, setLoading] = useState(false); // Loading state
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); // Start loading
+    setLoading(true);
 
     try {
       const response = await axios.post('http://localhost:5000/api/signup', {
@@ -34,18 +34,11 @@ const Signup = () => {
         region,
       });
 
-      // Store user details in local storage after successful signup
-      const userDetails = {
-        firstName,
-        lastName,
-        email,
-        birthDate,
-        gender,
-        mobileNumber,
-        role,
-        region,
-      };
-      localStorage.setItem('userDetails', JSON.stringify(userDetails));
+      const { token, user } = response.data;
+
+      // Store user details and token in local storage after successful signup
+      localStorage.setItem('authToken', token);
+      localStorage.setItem('userDetails', JSON.stringify(user));
 
       toast.success('You have registered successfully!');
       navigate('/login');
@@ -53,7 +46,7 @@ const Signup = () => {
       console.error('Signup Error:', err.response ? err.response.data : err.message);
       toast.error('Registration failed. Please try again.');
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 

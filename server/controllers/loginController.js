@@ -15,7 +15,12 @@ exports.login = async (req, res) => {
     // Generate JWT token
     const token = jwt.sign({ userId: user._id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    res.status(200).json({ token, role: user.role });
+    // Include user details in response
+    res.status(200).json({
+      token,
+      role: user.role,
+      user: user.toObject({ getters: true, versionKey: false, transform: (doc, ret) => { delete ret.password; return ret; } })
+    });
   } catch (err) {
     res.status(500).json({ message: 'Server error' });
   }

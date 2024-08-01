@@ -8,6 +8,7 @@ require('dotenv').config(); // Load environment variables from .env file
 const signupRoutes = require('./routes/signup');
 const loginRoutes = require('./routes/login');
 const forgotPasswordRoutes = require('./routes/forgotPassword'); // Import forgot password routes
+const profileRoute = require('./routes/Profile');
 
 const app = express();
 
@@ -24,6 +25,7 @@ mongoose.connect(process.env.MONGO_URI)
 app.use('/api/signup', signupRoutes);
 app.use('/api/login', loginRoutes);
 app.use('/api', forgotPasswordRoutes); // Use forgot password routes
+app.use('/api', profileRoute);
 
 // Start the server
 const PORT = process.env.PORT || 5000;

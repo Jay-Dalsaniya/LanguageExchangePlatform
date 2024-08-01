@@ -1,33 +1,32 @@
 // Login.js
-import React, { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify'; // Import toast
-import './Login.css';
-
-const Login = ({ setIsAuthenticated, setUserRole }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post('http://localhost:5000/api/login', { email, password });
-      const { token, role, profile } = response.data;
-      localStorage.setItem('authToken', token);
-      localStorage.setItem('userRole', role);
-      localStorage.setItem('userProfile', JSON.stringify(profile)); // Save profile info
-      setIsAuthenticated(true);
-      setUserRole(role);
-      toast.success(`Welcome ${role}!`);
-      navigate(role === 'teacher' ? '/teacher-dashboard' : '/learner-dashboard');
-    } catch (err) {
-      console.error('Login Error:', err.response ? err.response.data : err.message);
-      toast.error('Login failed. Please check your credentials and try again.');
-    }
-  };
-
+  import React, { useState } from 'react';
+  import axios from 'axios';
+  import { useNavigate } from 'react-router-dom';
+  import { toast } from 'react-toastify';
+  import './Login.css';
+  
+  const Login = ({ setIsAuthenticated, setUserRole }) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const response = await axios.post('http://localhost:5000/api/login', { email, password });
+        const { token, role, user } = response.data;
+  
+        localStorage.setItem('authToken', token);
+        localStorage.setItem('userDetails', JSON.stringify(user));
+        setIsAuthenticated(true);
+        setUserRole(role);
+        toast.success(`Welcome ${role}!`);
+        navigate(role === 'teacher' ? '/teacher-dashboard' : '/learner-dashboard');
+      } catch (err) {
+        console.error('Login Error:', err.response ? err.response.data : err.message);
+        toast.error('Login failed. Please check your credentials and try again.');
+      }
+    };
   return (
     <div className="login-page">
       <div className="login-image">
