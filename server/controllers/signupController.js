@@ -3,7 +3,7 @@ const User = require('../models/User');
 
 exports.signup = async (req, res) => {
   try {
-    const { email, password, role } = req.body;
+    const { firstName, lastName, email, password, birthDate, gender, mobileNumber, role, region } = req.body;
 
     // Check if user already exists
     const existingUser = await User.findOne({ email });
@@ -12,8 +12,19 @@ exports.signup = async (req, res) => {
     }
 
     // Create new user
-    const newUser = new User({ email, password, role });
-    // User.append("access_key", "YOUR_ACCESS_KEY_HERE");
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      password,
+      birthDate,
+      gender,
+      mobileNumber,
+      role,
+      region
+    });
+
+    // Save user to the database
     await newUser.save();
 
     res.status(201).json({ message: 'User registered successfully' });
@@ -21,3 +32,4 @@ exports.signup = async (req, res) => {
     res.status(500).json({ message: 'Server error' });
   }
 };
+

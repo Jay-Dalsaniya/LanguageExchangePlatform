@@ -5,18 +5,30 @@ import { toast } from 'react-toastify';
 import './Signup.css';
 
 const Signup = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [birthDate, setBirthDate] = useState('');
+  const [gender, setGender] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
   const [role, setRole] = useState('learner');
+  const [region, setRegion] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/signup', {
+      await axios.post('http://localhost:5000/api/signup', {
+        firstName,
+        lastName,
         email,
         password,
+        birthDate,
+        gender,
+        mobileNumber,
         role,
+        region,
       });
       toast.success('You have registered successfully!');
       navigate('/login');
@@ -36,6 +48,24 @@ const Signup = () => {
           <h2>Sign Up</h2>
           <div className="form-group">
             <input
+              type="text"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+              placeholder="First Name"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+              placeholder="Last Name"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -53,10 +83,45 @@ const Signup = () => {
             />
           </div>
           <div className="form-group">
-            <select value={role} onChange={(e) => setRole(e.target.value)}>
+            <input
+              type="date"
+              value={birthDate}
+              onChange={(e) => setBirthDate(e.target.value)}
+              placeholder="Birth Date"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <select value={gender} onChange={(e) => setGender(e.target.value)} required>
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              value={mobileNumber}
+              onChange={(e) => setMobileNumber(e.target.value)}
+              placeholder="Mobile Number"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <select value={role} onChange={(e) => setRole(e.target.value)} required>
               <option value="learner">Learner</option>
               <option value="teacher">Teacher</option>
             </select>
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              value={region}
+              onChange={(e) => setRegion(e.target.value)}
+              placeholder="Region"
+              required
+            />
           </div>
           <button type="submit" className="signup-btn">Signup</button>
           <p className="login-link">
