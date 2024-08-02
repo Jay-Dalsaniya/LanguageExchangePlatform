@@ -40,7 +40,7 @@ const App = () => {
   return (
     <Router>
       <div className="app-container">
-        <NavBar isAuthenticated={isAuthenticated} handleLogout={handleLogout} />
+        <NavBar isAuthenticated={isAuthenticated} userRole={userRole} />
         <main className="content">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -52,7 +52,7 @@ const App = () => {
             <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
-            <Route path="/profile" element={<Profile />} /> {/* Profile route */}
+            <Route path="/profile" element={<Profile handleLogout={handleLogout} />} /> {/* Profile route with handleLogout */}
           </Routes>
         </main>
         <ToastContainer />

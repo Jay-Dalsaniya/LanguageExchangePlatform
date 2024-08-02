@@ -30,6 +30,13 @@ const Profile = () => {
     fetchUserDetails();
   }, [navigate]);
 
+  const handleLogout = () => {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('userRole');
+    localStorage.removeItem('userDetails'); // Clear user details on logout
+    navigate('/'); // Redirect to home page after logout
+  };
+
   return (
     <div className="profile-container">
       <h2>User Profile</h2>
@@ -50,6 +57,7 @@ const Profile = () => {
         <p><strong>Mobile Number:</strong> {userDetails.mobileNumber}</p>
         <p><strong>Region:</strong> {userDetails.region}</p>
       </div>
+      <button className="logout-button" onClick={handleLogout}>Logout</button>
     </div>
   );
 };

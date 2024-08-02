@@ -1,9 +1,8 @@
-// src/components/NavBar.js
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './NavBar.css';
 
-const NavBar = ({ isAuthenticated, handleLogout }) => {
+const NavBar = ({ isAuthenticated, userRole }) => {
   const navigate = useNavigate();
 
   return (
@@ -15,8 +14,9 @@ const NavBar = ({ isAuthenticated, handleLogout }) => {
         <li><Link to="/contact">Contact</Link></li>
         {isAuthenticated ? (
           <>
+            {userRole === 'learner' && <li><Link to="/learner-dashboard">Dashboard</Link></li>}
+            {userRole === 'teacher' && <li><Link to="/teacher-dashboard">Dashboard</Link></li>}
             <li><Link to="/profile">Profile</Link></li>
-            <li><button className="logout-button" onClick={handleLogout}>Logout</button></li>
           </>
         ) : (
           <>
