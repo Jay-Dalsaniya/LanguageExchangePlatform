@@ -18,13 +18,13 @@ const About = () => {
         <h2>Meet the Team</h2>
         <div className="team-members">
           <div className="team-member">
-            <img src="path-to-image.jpg" alt="Team Member 1" />
-            <h3>John Doe</h3>
+            <img src="assets\jay_photo.png" alt="Team Member 1" />
+            <h3>Jay Dalsaniya</h3>
             <p>Founder & CEO</p>
           </div>
           <div className="team-member">
-            <img src="path-to-image.jpg" alt="Team Member 2" />
-            <h3>Jane Smith</h3>
+            <img src="assets\jay_photo.png" alt="Team Member 2" />
+            <h3>Manan Varmora</h3>
             <p>CTO</p>
           </div>
         
