@@ -8,7 +8,7 @@ const signupRoutes = require('./routes/signup');
 const loginRoutes = require('./routes/login');
 const forgotPasswordRoutes = require('./routes/forgotPassword'); // Import forgot password routes
 const profileRoute = require('./routes/Profile');
-const addCourseRoutes = require('./routes/add-course'); // Import add course route
+const addCourseRoutes = require('./routes/addCourse'); // Import add course route
 
 const app = express();
 

@@ -1,19 +1,19 @@
-// routes/checkEmail.js
-const express = require('express');
-const router = express.Router();
-const User = require('../models/User');
+// // routes/checkEmail.js
+// const express = require('express');
+// const router = express.Router();
+// const User = require('../models/User');
 
-router.post('/', async (req, res) => {
-  const { email } = req.body;
-  const user = await User.findOne({ email });
-  if (user) {
-    return res.status(200).json({ exists: true });
-  } else {
-    return res.status(200).json({ exists: false });
-  }
-});
+// router.post('/', async (req, res) => {
+//   const { email } = req.body;
+//   const user = await User.findOne({ email });
+//   if (user) {
+//     return res.status(200).json({ exists: true });
+//   } else {
+//     return res.status(200).json({ exists: false });
+//   }
+// });
 
-module.exports = router;
+// module.exports = router;
 
 // routes/resetPassword.js
 const express = require('express');
