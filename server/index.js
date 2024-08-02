@@ -8,7 +8,7 @@ const signupRoutes = require('./routes/signup');
 const loginRoutes = require('./routes/login');
 const forgotPasswordRoutes = require('./routes/forgotPassword'); // Import forgot password routes
 const profileRoute = require('./routes/Profile');
-const addCourseRoute = require('./routes/addCourse'); // Import add course route
+const addCourseRoutes = require('./routes/add-course'); // Import add course route
 
 const app = express();
 
@@ -26,7 +26,7 @@ app.use('/api/signup', signupRoutes);
 app.use('/api/login', loginRoutes);
 app.use('/api', forgotPasswordRoutes); // Use forgot password routes
 app.use('/api', profileRoute);
-app.use('/api/addCourse', addCourseRoute); // Use add course route
+app.use('/api/add-course', addCourseRoutes);// Use add course route
 
 // Start the server
 const PORT = process.env.PORT || 5000;
