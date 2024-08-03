@@ -1,15 +1,14 @@
+// models/Course.js
 const mongoose = require('mongoose');
 
 const courseSchema = new mongoose.Schema({
+  courseName: { type: String, required: true },
   language: { type: String, required: true },
+  subject: { type: String, required: true },
   platform: { type: String, required: true },
   time: { type: String, required: true },
-  fees: { type: Number, required: true },
-  teacherPhoto: { type: String, required: true }, // Store the path to the photo if using file upload
-  enrolled: { type: Boolean, default: false },
-  createdAt: { type: Date, default: Date.now },
+  fees: { type: String, required: true },
+  aboutCourse: { type: String, required: true }
 });
 
-const Course = mongoose.model('Course', courseSchema);
-
-module.exports = Course;
+module.exports = mongoose.model('Course', courseSchema);
