@@ -25,9 +25,13 @@ const About = () => {
           <div className="team-member">
             <img src="assets\jay_photo.png" alt="Team Member 2" />
             <h3>Manan Varmora</h3>
-            <p>CTO</p>
+            <p>Founder & CTO</p>
           </div>
-        
+          <div className="team-member">
+            <img src="assets\hitesh_photo.jpg" alt="Team Member 2" />
+            <h3>Hitesh Bhanderi</h3>
+            <p>CFO</p>
+          </div>
         </div>
       </section>
       <section className="values">

@@ -56,7 +56,7 @@ const Login = ({ setIsAuthenticated, setUserRole }) => {
           </div>
           <div className="form-group">
             <input type="checkbox" id="rememberMe" />
-            <label htmlFor="rememberMe">Remember Me</label>
+            <label htmlFor="rememberMe">Remember Me </label>
             <a href="/forgot-password" className="forgot-password">Forgot Password?</a>
           </div>
           <button type="submit" className="login-btn">SIGN IN</button>
