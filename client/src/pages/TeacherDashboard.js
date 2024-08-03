@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import './TeacherDashboard.css';
 
 const TeacherDashboard = () => {
@@ -14,6 +16,9 @@ const TeacherDashboard = () => {
     aboutCourse: '',
   });
   const [courses, setCourses] = useState([]);
+  
+  const formRef = useRef(null);
+  const progressRef = useRef(null);
 
   useEffect(() => {
     const fetchCourses = async () => {
@@ -31,6 +36,18 @@ const TeacherDashboard = () => {
 
     fetchCourses();
   }, []);
+
+  useEffect(() => {
+    if (activeSection === 'addCourse' || activeSection === 'editCourse') {
+      if (formRef.current) {
+        formRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else if (activeSection === 'viewProgress') {
+      if (progressRef.current) {
+        progressRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [activeSection]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -56,7 +73,9 @@ const TeacherDashboard = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
 
-      console.log('Course added successfully!');
+      const message = formData.id ? 'Course updated successfully!' : 'Course added successfully!';
+      toast.success(message);
+
       const updatedCoursesResponse = await fetch('http://localhost:5000/api/get-course');
       if (updatedCoursesResponse.ok) {
         const updatedCourses = await updatedCoursesResponse.json();
@@ -67,6 +86,7 @@ const TeacherDashboard = () => {
       setActiveSection(null);
     } catch (error) {
       console.error('Error submitting form:', error);
+      toast.error('Error submitting form');
     }
   };
 
@@ -81,35 +101,56 @@ const TeacherDashboard = () => {
       fees: course.fees,
       aboutCourse: course.aboutCourse,
     });
-    setActiveSection('addCourse');
+    setActiveSection('editCourse');
   };
 
   const handleDelete = async (courseId) => {
-    try {
-      const response = await fetch(`http://localhost:5000/api/delete-course/${courseId}`, {
-        method: 'DELETE',
-      });
-  
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+    if (window.confirm('Are you sure you want to delete this course?')) {
+      try {
+        const response = await fetch(`http://localhost:5000/api/delete-course/${courseId}`, {
+          method: 'DELETE',
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        toast.success('Course deleted successfully!');
+        const updatedCoursesResponse = await fetch('http://localhost:5000/api/get-course');
+        if (updatedCoursesResponse.ok) {
+          const updatedCourses = await updatedCoursesResponse.json();
+          setCourses(updatedCourses);
+        } else {
+          console.error('Failed to fetch updated courses:', updatedCoursesResponse.statusText);
+        }
+      } catch (error) {
+        console.error('Error deleting course:', error);
+        toast.error('Error deleting course');
       }
-  
-      console.log('Course deleted successfully!');
-      const updatedCoursesResponse = await fetch('http://localhost:5000/api/get-course');
-      if (updatedCoursesResponse.ok) {
-        const updatedCourses = await updatedCoursesResponse.json();
-        setCourses(updatedCourses);
-      } else {
-        console.error('Failed to fetch updated courses:', updatedCoursesResponse.statusText);
-      }
-    } catch (error) {
-      console.error('Error deleting course:', error);
     }
   };
-  
+
+  const handleAddCourse = () => {
+    setFormData({
+      id: null,
+      courseName: '',
+      language: '',
+      subject: '',
+      platform: '',
+      time: '',
+      fees: '',
+      aboutCourse: '',
+    });
+    setActiveSection('addCourse');
+  };
+
+  const handleViewProgress = () => {
+    setActiveSection('viewProgress');
+  };
 
   return (
     <div className="teacher-dashboard">
+      <ToastContainer />
       <header className="dashboard-header">
         <h1>Teacher Dashboard</h1>
         <p>Welcome, Teacher!</p>
@@ -152,8 +193,8 @@ const TeacherDashboard = () => {
                   <p><strong>Time:</strong> {course.time}</p>
                   <p><strong>Fees:</strong> {course.fees}</p>
                   <p><strong>About the Course:</strong> {course.aboutCourse}</p>
-                  <button onClick={() => handleEdit(course)}>Edit</button>
-                  <button onClick={() => handleDelete(course._id)}>Delete</button>
+                  <button className="edit-button" onClick={() => handleEdit(course)}>Edit</button>
+                  <button className="delete-button" onClick={() => handleDelete(course._id)}>Delete</button>
                 </li>
               ))}
             </ul>
@@ -162,13 +203,13 @@ const TeacherDashboard = () => {
       </section>
 
       <section className="dashboard-actions">
-        <button className="action-button" onClick={() => setActiveSection('addCourse')}>Add New Course</button>
-        <button className="action-button" onClick={() => setActiveSection('viewProgress')}>View Student Progress</button>
+        <button className="action-button" onClick={handleAddCourse}>Add New Course</button>
+        <button className="action-button" onClick={handleViewProgress}>View Student Progress</button>
       </section>
 
-      {activeSection === 'addCourse' && (
-        <div className="form-container">
-          <h2>{formData.id ? 'Update Course' : 'Add New Course'}</h2>
+      {(activeSection === 'addCourse' || activeSection === 'editCourse') && (
+        <div className="form-container" ref={formRef}>
+          <h2>{activeSection === 'editCourse' ? 'Update Course' : 'Add New Course'}</h2>
           <form onSubmit={handleSubmit}>
             <label>
               Course Name:
@@ -198,14 +239,14 @@ const TeacherDashboard = () => {
               About the Course:
               <textarea name="aboutCourse" value={formData.aboutCourse} onChange={handleChange} required />
             </label>
-            <button type="submit">{formData.id ? 'Update' : 'Add'}</button>
-            <button type="button" onClick={() => setActiveSection(null)}>Cancel</button>
+            <button className="submit-button" type="submit">{activeSection === 'editCourse' ? 'Update' : 'Add'}</button>
+            <button className="cancel-button" type="button" onClick={() => setActiveSection(null)}>Cancel</button>
           </form>
         </div>
       )}
 
       {activeSection === 'viewProgress' && (
-        <div className="form-container">
+        <div className="form-container" ref={progressRef}>
           <h2>View Student Progress</h2>
           <p>Student progress details will be displayed here.</p>
         </div>
