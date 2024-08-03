@@ -1,0 +1,20 @@
+const Course = require('../models/Course');
+
+exports.updateCourse = async (req, res) => {
+  const { id } = req.params;
+  const updatedCourseData = req.body;
+
+  try {
+    const updatedCourse = await Course.findByIdAndUpdate(id, updatedCourseData, { new: true });
+    if (!updatedCourse) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+    res.status(200).json(updatedCourse);
+  } catch (error) {
+    console.error('Error updating course:', error.message);
+    res.status(500).json({
+      message: 'Failed to update course',
+      error: error.message,
+    });
+  }
+};

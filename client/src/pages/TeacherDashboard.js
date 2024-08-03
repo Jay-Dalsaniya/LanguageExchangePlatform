@@ -16,7 +16,7 @@ const TeacherDashboard = () => {
     aboutCourse: '',
   });
   const [courses, setCourses] = useState([]);
-  
+
   const formRef = useRef(null);
   const progressRef = useRef(null);
 
@@ -61,8 +61,13 @@ const TeacherDashboard = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:5000/api/add-course', {
-        method: 'POST',
+      const method = formData.id ? 'PUT' : 'POST';
+      const url = formData.id
+        ? `http://localhost:5000/api/update-course/${formData.id}`
+        : 'http://localhost:5000/api/add-course';
+
+      const response = await fetch(url, {
+        method,
         headers: {
           'Content-Type': 'application/json',
         },
@@ -83,6 +88,17 @@ const TeacherDashboard = () => {
       } else {
         console.error('Failed to fetch updated courses:', updatedCoursesResponse.statusText);
       }
+
+      setFormData({
+        id: null,
+        courseName: '',
+        language: '',
+        subject: '',
+        platform: '',
+        time: '',
+        fees: '',
+        aboutCourse: '',
+      });
       setActiveSection(null);
     } catch (error) {
       console.error('Error submitting form:', error);
@@ -240,15 +256,14 @@ const TeacherDashboard = () => {
               <textarea name="aboutCourse" value={formData.aboutCourse} onChange={handleChange} required />
             </label>
             <button className="submit-button" type="submit">{activeSection === 'editCourse' ? 'Update' : 'Add'}</button>
-            <button className="cancel-button" type="button" onClick={() => setActiveSection(null)}>Cancel</button>
           </form>
         </div>
       )}
 
       {activeSection === 'viewProgress' && (
-        <div className="form-container" ref={progressRef}>
-          <h2>View Student Progress</h2>
-          <p>Student progress details will be displayed here.</p>
+        <div className="progress-container" ref={progressRef}>
+          <h2>Student Progress</h2>
+          <p>Progress details go here...</p>
         </div>
       )}
     </div>

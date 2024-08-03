@@ -11,6 +11,7 @@ const profileRoute = require('./routes/Profile');
 const addCourseRoute = require('./routes/addCourse'); // Import add course route
 const getCourseRoute = require('./routes/getCourse');
 const deleteCourseRoute = require('./routes/deleteCourse'); // Import delete course route
+const updateCourseRoute = require('./routes/updateCourse'); // Adjust the path as needed
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.use('/api', profileRoute);
 app.use('/api', addCourseRoute);
 app.use('/api', getCourseRoute);
 app.use('/api', deleteCourseRoute); // Register delete course route
+app.use('/api', updateCourseRoute);
 
 
 // Start the server
