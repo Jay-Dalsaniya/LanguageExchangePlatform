@@ -1,8 +1,10 @@
+// src/components/NavBar.js
+
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './NavBar.css';
 
-const NavBar = ({ isAuthenticated, userRole, handleLogout }) => {
+const NavBar = ({ isAuthenticated, userRole }) => {
   const navigate = useNavigate();
 
   return (

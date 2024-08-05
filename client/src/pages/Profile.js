@@ -1,9 +1,11 @@
+// src/pages/Profile.js
+
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import './Profile.css'; // Import the CSS for styling
+import './Profile.css';
 
-const Profile = () => {
+const Profile = ({ handleLogout }) => {
   const navigate = useNavigate();
   const [userDetails, setUserDetails] = useState({});
 
@@ -22,20 +24,12 @@ const Profile = () => {
         setUserDetails(response.data);
       } catch (error) {
         console.error('Failed to fetch user details', error);
-        // Optionally, handle the error (e.g., navigate to login page)
-        // navigate('/login');
+        navigate('/login'); // Redirect to login on error
       }
     };
 
     fetchUserDetails();
   }, [navigate]);
-
-  const handleLogout = () => {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('userRole');
-    localStorage.removeItem('userDetails'); // Clear user details on logout
-    navigate('/'); // Redirect to home page after logout
-  };
 
   return (
     <div className="profile-container">

@@ -1,5 +1,7 @@
+// src/App.js
+
 import React, { useEffect, useState } from 'react';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import NavBar from './components/NavBar';
 import About from './pages/About';
@@ -11,7 +13,7 @@ import Signup from './pages/Signup';
 import TeacherDashboard from './pages/TeacherDashboard';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
-import Profile from './pages/Profile'; // Import the Profile component
+import Profile from './pages/Profile'; 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -52,7 +54,7 @@ const App = () => {
             <Route path="/teacher-dashboard" element={<TeacherDashboard />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
-            <Route path="/profile" element={<Profile handleLogout={handleLogout} />} /> {/* Profile route with handleLogout */}
+            <Route path="/profile" element={<Profile handleLogout={handleLogout} />} /> {/* Pass handleLogout directly */}
           </Routes>
         </main>
         <ToastContainer />
