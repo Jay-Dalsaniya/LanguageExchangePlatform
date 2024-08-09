@@ -49,7 +49,7 @@ The Language Exchange Platform is a web-based application designed to help learn
    - Create a `.env` file in the root directory and add the following:
 
      ```env
-     MONGO_URI=mongodb://localhost:27017/languageExchangPplatform
+     MONGO_URI=mongodb://localhost:1000/languageExchangPplatform
      JWT_SECRET=your_jwt_secret
      ```
 
@@ -92,6 +92,35 @@ This project is licensed under the MIT License.
 For any questions or suggestions, feel free to reach out:
 
 - **Jay Dalsaniya** - dalsaniyajay@gmail.com
+
+## Image's 
+home page:
+![image](https://github.com/user-attachments/assets/5b94d579-a4e5-4825-b7fb-0179986a5f5e)
+![image](https://github.com/user-attachments/assets/73b53338-7a3f-48c0-bb8a-2f1cc12b1ef7)
+
+about page:
+![image](https://github.com/user-attachments/assets/f08ac076-e163-40e1-a6fb-3ae55b278861)
+
+contact us page:
+![image](https://github.com/user-attachments/assets/26a78481-31b8-4a9f-a35c-859bd1121ad8)
+
+Signup page:
+![image](https://github.com/user-attachments/assets/ea23bc0f-7ec1-4f32-a65d-49196cdae1d3)
+
+Login page:
+![image](https://github.com/user-attachments/assets/1ebc19ab-9ddf-4efb-b26a-d7347b066840)
+
+Teacher-dashboard:
+![image](https://github.com/user-attachments/assets/53c01576-cbfc-498c-b536-c56ac8947fac)
+
+add course page:
+![image](https://github.com/user-attachments/assets/43aa440e-788d-48fb-bf6c-32d466a300c7)
+
+profile page:
+![image](https://github.com/user-attachments/assets/d097e29e-98b8-4e18-afbc-53ce4ab1ef08)
+
+Learner dashboard page:
+![image](https://github.com/user-attachments/assets/593777cd-1b6c-4c43-ae69-a232f3a0a1d9)
 
 ---
 
