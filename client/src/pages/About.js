@@ -23,7 +23,7 @@ const About = () => {
             <p>Founder & CEO</p>
           </div>
           <div className="team-member">
-            <img src="assets\jay_photo.png" alt="Team Member 2" />
+            <img src="assets\user.png" alt="Team Member 2" />
             <h3>Manan Varmora</h3>
             <p>Founder & CTO</p>
           </div>
