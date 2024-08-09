@@ -264,6 +264,7 @@ const TeacherDashboard = () => {
         <div className="progress-container" ref={progressRef}>
           <h2>Student Progress</h2>
           <p>Progress details go here...</p>
+          <p>will be show in future...</p>
         </div>
       )}
     </div>
