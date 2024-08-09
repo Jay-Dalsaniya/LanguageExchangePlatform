@@ -30,32 +30,36 @@ The Language Exchange Platform is a web-based application designed to help learn
    git clone https://github.com/yourusername/language-exchange-platform.git
 Navigate to the project directory:
 
-
+bash
+Copy code
 cd language-exchange-platform
 Install the required dependencies:
 
-
+bash
+Copy code
 npm install
 Set up the environment variables:
 
 Create a .env file in the root directory and add the following:
 
 env
-
-MONGO_URI=mongodb://localhost:27017/languageExchangPplatform
+Copy code
+MONGO_URI=mongodb://localhost:27017/languageExchangPlatform
 JWT_SECRET=your_jwt_secret
 Usage
 Starting the Client
 To start the client, run:
 
-
+bash
+Copy code
 npm start
 This will start the frontend of the application. Open your browser and navigate to http://localhost:3000 to access the application.
 
 Starting the Server
 To start the server, run:
 
-
+bash
+Copy code
 node index.js
 This will start the backend server on the specified port, usually http://localhost:5000.
 
@@ -71,4 +75,4 @@ This project is licensed under the MIT License.
 Contact
 For any questions or suggestions, feel free to reach out:
 
-Jay Dalsaniya - dalsaniyajay111@gmail.com
+Jay Dalsaniya - dalsaniyajay@gmail.com
