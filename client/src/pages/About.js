@@ -1,17 +1,21 @@
-import React from 'react';
-import './About.css'; // Import the CSS file
+import React from "react";
+import "./About.css"; // Import the CSS file
 
 const About = () => {
   return (
     <div className="about-container">
       <h1>About Us</h1>
       <p>
-        Welcome to the Language Exchange Platform. We are dedicated to helping people learn and teach languages in a collaborative and engaging environment.
+        Welcome to the Language Exchange Platform. We are dedicated to helping
+        people learn and teach languages in a collaborative and engaging
+        environment.
       </p>
       <section className="mission">
         <h2>Our Mission</h2>
         <p>
-          Our mission is to create a global community where language learners and teachers can connect, share knowledge, and enhance their linguistic skills.
+          Our mission is to create a global community where language learners
+          and teachers can connect, share knowledge, and enhance their
+          linguistic skills.
         </p>
       </section>
       <section className="team">
@@ -23,7 +27,7 @@ const About = () => {
             <p>Founder & CEO</p>
           </div>
           <div className="team-member">
-            <img src="assets\user.png" alt="Team Member 2" />
+            <img src="assets\manan.jpg" alt="Team Member 2" />
             <h3>Manan Varmora</h3>
             <p>Founder & CTO</p>
           </div>
